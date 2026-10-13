@@ -50,6 +50,36 @@ npm run build
 
 ## 📁 Struktur Project
 
+### Integrasi Densus 88
+
+- URL halaman menggunakan `/densus88/...`. Bookmark `/propam/...` diarahkan ke
+  halaman baru dengan query string dan hash tetap dipertahankan.
+- Form **Buat Topik Baru** menggunakan
+  `POST /api/v1/densus88/threat-monitoring/topics`. `monitoring` dikirim sebagai
+  boolean; `media_sources` berisi `media`, `twitter`, `facebook`, `instagram`,
+  atau `tiktok`. Monitoring default nonaktif, minimal satu sumber wajib dipilih,
+  dan instansi/hashtag opsional. Konteks maksimal 5000 karakter.
+- Baca, edit, hapus topik, dan Generate Context tetap memakai endpoint lama.
+  Pada edit, hashtag/instansi kosong tidak dikirim; pengosongan nilai yang sudah
+  terisi ditolak secara eksplisit karena API edit lama tidak menerima `null`.
+  API analitik dan laporan memakai `/api/v1/densus88/...` (radar, dumas, kategorisasi,
+  ews, polda, red-zone, ringkasan, sna, issues, report/preview, report-settings).
+  Endpoint ini memakai controller yang sama dengan Propam tetapi dengan profil
+  leksikon Densus 88 (`config/densus88.php` di `api-sentiment`: kata kunci terorisme,
+  label kategori, playbook, dan teks laporan). `/api/v1/propam/...` tidak berubah.
+  Kunci kategori respons tetap (`tindak_pidana`, `pelanggaran_etik`,
+  `pelanggaran_disiplin`, `netralitas`) dan dipetakan ke label Densus 88 di frontend.
+- Pengaturan Akses Wilayah menggunakan `GET /api/v1/densus88/access-settings`,
+  `PUT /api/v1/densus88/access-settings/users/{userId}`, dan
+  `GET /api/v1/densus88/polda/options`. Hanya Operator yang dapat mengelola
+  pengguna workspace bernama **Densus 88**. Pengguna Propam Polri tidak masuk
+  daftar dan tidak dapat diubah melalui endpoint ini. Deploy endpoint backend
+  baru sebelum merilis frontend; halaman tidak melakukan fallback ke API Propam.
+  Penugasan memakai kolom Polda pengguna yang sudah dibaca analitik/laporan lama,
+  bukan penugasan Polda independen per modul.
+- Periksa integrasi dengan `npm run check:densus88`, `npm run check:guide`,
+  dan `npm run build`.
+
 ```
 src/
 ├── components/          # Reusable components
@@ -144,41 +174,39 @@ Distributed under the MIT license.
 ---
 
 **Happy Coding! 🚀**
-# sentiment-propam
-# Pengaturan Akses Propam
+# Pengaturan Akses Wilayah (Densus 88)
 
-Menu **Account -> Pengaturan Akses** (`/propam/access-settings`), di bawah
-Profile dan Pengaturan Report, tersedia hanya
+Menu **Akun -> Pengaturan Akses Wilayah** (`/densus88/access-settings`), di bawah
+Profil dan Pengaturan Laporan, tersedia hanya
 untuk Operator, bukan Super Admin. Cari user, pilih cakupan nasional atau satu Polda, kemudian
 klik **Simpan**. Perluasan ke nasional membutuhkan konfirmasi. Workspace dan
 role user tidak diubah. Nasional tetap mengikuti akses topik/workspace user.
 
-Backend harus menyediakan `GET /api/v1/propam/access-settings` (daftar user dan
-katalog Polda) serta `PUT /api/v1/propam/access-settings/users/{id}` (penugasan).
-Pembatasan diterapkan oleh backend pada analisis Propam dan laporan; halaman ini
+Backend harus menyediakan `GET /api/v1/densus88/access-settings` (daftar user dan
+katalog Polda) serta `PUT /api/v1/densus88/access-settings/users/{id}` (penugasan).
+Pembatasan diterapkan oleh backend pada analisis Densus 88 dan laporan; halaman ini
 bukan sekadar filter tampilan. Beberapa Polda per akun belum didukung.
-Operator dapat mengatur user semua role hanya di workspace **Propam Polri**, termasuk
+Operator dapat mengatur user semua role hanya di workspace **Densus 88**, termasuk
 akun sendiri dan akun Super Admin jika berada di workspace tersebut. User workspace
 lain atau tanpa workspace tidak ditampilkan dan tidak dapat diubah melalui API ini.
-Operator pengelola tidak harus berasal dari workspace Propam Polri.
+Operator pengelola tidak harus berasal dari workspace Densus 88.
 Operator boleh melepas penugasan Polda menjadi nasional;
 karena itu, penugasan Polda tidak merupakan batas permanen bagi pengelola Operator.
 
-Menu **Topics Settings** berada di grup **Data Management**. URL dan hak akses
+Menu **Pengaturan Topik** berada di grup **Pengelolaan Data**. URL dan hak akses
 halaman tidak berubah setelah penataan sidebar.
 
-Judul grup analisis mengikuti cakupan akun dari `/v1/propam/polda/options`:
-**Polda Jawa Barat - EWS Paminal**, misalnya, atau **Nasional - EWS Paminal**
+Judul grup analisis mengikuti cakupan akun dari `/v1/densus88/polda/options`:
+**Polda Jawa Barat - EWS Kontraterorisme**, misalnya, atau **Nasional - EWS Kontraterorisme**
 untuk akun tanpa penugasan Polda. Nama tidak diambil dari topik/workspace.
 Judul diperbarui saat penugasan akun sendiri disimpan atau jendela mendapat fokus.
-Paminal berarti Pengamanan Internal; EWS berarti sistem peringatan dini.
 
 ## Panduan penggunaan dan HTML offline
 
-Menu **Account -> Panduan Penggunaan** (`/panduan`) berisi petunjuk per halaman,
+Menu **Akun -> Panduan Penggunaan** (`/panduan`) berisi petunjuk per halaman,
 langkah penggunaan, arti indikator, batasan, screenshot, glosarium, dan
 penanganan masalah umum. Halaman demo/legacy diberi keterangan yang jelas.
-Halaman Settings lama (`/settings`) tidak disertakan karena tidak digunakan di Propam.
+Halaman Settings lama (`/settings`) tidak disertakan karena tidak digunakan di Densus 88.
 Screenshot diambil pada 7 Oktober 2026; identitas akun dan tujuan laporan
 disamarkan. File tetap untuk penggunaan internal dan perlu ditinjau sebelum dibagikan.
 

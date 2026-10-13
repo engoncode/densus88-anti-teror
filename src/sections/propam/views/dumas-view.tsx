@@ -34,8 +34,8 @@ export function DumasView() {
 
   return (
     <PropamPage
-      title="Sentimen Pengaduan Masyarakat (Dumas)"
-      subtitle="Keluhan publik terhadap personel/satuan, disaring berdasarkan tingkat urgensi."
+      title="Sentimen & Propaganda Publik"
+      subtitle="Reaksi publik terhadap narasi ekstremisme dan upaya penegakan hukum, disaring berdasarkan tingkat urgensi."
       icon={MessageSquareWarning}
     >
       <FilterBar
@@ -64,7 +64,7 @@ export function DumasView() {
         {data && (
           <>
             <div className="grid gap-3 sm:grid-cols-3">
-              <StatCard label="Total pengaduan" value={data.summary.total} icon={<Users strokeWidth={1.5} className="size-5" />} />
+              <StatCard label="Total konten" value={data.summary.total} icon={<Users strokeWidth={1.5} className="size-5" />} />
               <StatCard label="Kritis" value={data.summary.by_urgency.critical} icon={<Siren strokeWidth={1.5} className="size-5" />} tone="danger" />
               <StatCard label="Tinggi" value={data.summary.by_urgency.high} icon={<ShieldAlert strokeWidth={1.5} className="size-5" />} tone="warning" />
             </div>
@@ -82,7 +82,7 @@ export function DumasView() {
                   />
                 </div>
                 <div className="rounded-xl border border-line bg-surface p-4">
-                  <h2 className="mb-3 text-sm font-semibold text-fg">Kanal pengaduan</h2>
+                  <h2 className="mb-3 text-sm font-semibold text-fg">Platform sumber</h2>
                   {Object.keys(data.summary.by_platform).length === 0 ? (
                     <p className="text-xs text-fg-muted">Belum ada data.</p>
                   ) : (
@@ -99,7 +99,7 @@ export function DumasView() {
 
               <section className="space-y-3 lg:col-span-2">
                 {data.items.data.length === 0 ? (
-                  <EmptyState title="Tidak ada pengaduan" hint="Ubah filter urgensi atau perluas periode." />
+                  <EmptyState title="Tidak ada konten" hint="Ubah filter urgensi atau perluas periode." />
                 ) : (
                   <>
                     <PostList posts={data.items.data} />

@@ -58,8 +58,8 @@ export function RedZoneView() {
 
   return (
     <PropamPage
-      title="Peta Rawan Isu (Red Zone)"
-      subtitle="Pemetaan sentimen negatif dan indikasi pelanggaran secara geografis."
+      title="Peta Rawan Radikalisme"
+      subtitle="Pemetaan indikasi penyebaran narasi radikal dan kantong rekrutmen secara geografis."
       icon={MapIcon}
     >
       <FilterBar
@@ -107,7 +107,7 @@ export function RedZoneView() {
                       <Tooltip>
                         <strong>{zone.label}</strong>
                         <br />
-                        {zone.negative_count} negatif · {zone.violation_count} indikasi pelanggaran
+                        {zone.negative_count} negatif · {zone.violation_count} indikasi ancaman
                       </Tooltip>
                     </CircleMarker>
                   ))}
@@ -134,7 +134,7 @@ export function RedZoneView() {
                         <ZoneBadge zone={zone.zone} />
                       </div>
                       <p className="mt-1 text-xs text-fg-muted">
-                        {zone.negative_count} negatif · {zone.violation_count} pelanggaran · {zone.critical_count} kritis
+                        {zone.negative_count} negatif · {zone.violation_count} indikasi ancaman · {zone.critical_count} kritis
                       </p>
                       {zone.top_category && (
                         <p className="text-xs text-fg-muted">Dominan: {CATEGORY_LABEL[zone.top_category]}</p>

@@ -369,7 +369,7 @@ export function NavContent({ data, slots, workspaces, sx }: NavContentProps) {
                   </Box>
 
                   {/* Insert Topics Popover after Overview group */}
-                  {group.subheader === 'Overview' && (
+                  {group.items.some((item) => item.path === '/') && (
                     <Box sx={{ mt: 2, mb: 1 }}>
                       <TopicsPopover data={topics} loading={loadingTopics} />
                     </Box>
@@ -399,7 +399,7 @@ export function NavContent({ data, slots, workspaces, sx }: NavContentProps) {
             display: 'block',
           }}
         >
-          Copyrights © 2026 Propam Polri. All rights reserved.
+          © 2026 Densus 88 Antiteror Polri. Hak cipta dilindungi.
         </Typography>
       </Box>
 

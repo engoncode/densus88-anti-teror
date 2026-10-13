@@ -76,7 +76,7 @@ export function ReportSettingsView() {
   };
 
   return (
-    <PropamPage title="Pengaturan Report Propam" subtitle="Simpan pilihan kanal dan tujuan report untuk akun Anda." icon={Settings2}>
+    <PropamPage title="Pengaturan Laporan" subtitle="Simpan pilihan kanal dan tujuan laporan untuk akun Anda." icon={Settings2}>
       <aside className="rounded-xl border border-line bg-muted p-4 text-sm leading-relaxed text-fg-muted">
         <strong className="text-fg">Laporan dikirim otomatis setiap hari pukul {settings?.schedule_time ?? '08:00'} WIB</strong> ke
         kanal yang ON, berisi ringkasan 24 jam terakhir seperti preview di bawah. Menyimpan pengaturan tidak langsung mengirim pesan.

@@ -30,7 +30,7 @@ export function Logo({
     <LogoRoot
       component={RouterLink}
       href={href}
-      aria-label="Propam Polri Logo"
+      aria-label="Logo Densus 88 Antiteror"
       underline="none"
       className={mergeClasses([logoClasses.root, className])}
       sx={[
@@ -47,15 +47,15 @@ export function Logo({
     >
       <Box
         component="img"
-        src="/assets/logo/Propam_Polri.png"
-        alt="Propam Polri"
+        src="/assets/logo/Densus_88_AT.png"
+        alt="Densus 88 Antiteror"
         sx={{ height: '100%', width: 'auto', objectFit: 'contain' }}
       />
       <Typography
         variant="subtitle1"
         sx={{ color: 'text.primary', fontWeight: 800, lineHeight: 1.2, whiteSpace: 'nowrap' }}
       >
-        PROPAM POLRI
+        DENSUS 88 ANTITEROR
       </Typography>
     </LogoRoot>
   );

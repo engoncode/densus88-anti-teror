@@ -112,7 +112,7 @@ export function UserGuide() {
 
   useEffect(() => {
     const previousTitle = document.title;
-    document.title = 'Panduan Penggunaan - Propam Polri & Analisis Sentimen';
+    document.title = 'Panduan Penggunaan - Densus 88 Antiteror & Analisis Sentimen';
     const beforePrint = () => setPrintMode(true);
     const afterPrint = () => setPrintMode(false);
     window.addEventListener('beforeprint', beforePrint);
@@ -154,7 +154,7 @@ export function UserGuide() {
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
         <header className="mb-6 space-y-4 rounded-2xl bg-slate-950 p-6 text-white sm:p-8">
           <p className="m-0 flex items-center gap-2 text-sm font-semibold text-blue-200"><BookOpen className="size-5" aria-hidden="true" /> Panduan pengguna</p>
-          <h1 className="m-0 text-3xl font-bold leading-tight sm:text-4xl">Cara menggunakan web Propam Polri</h1>
+          <h1 className="m-0 text-3xl font-bold leading-tight sm:text-4xl">Cara menggunakan web Densus 88 Antiteror</h1>
           <p className="m-0 max-w-3xl text-base leading-relaxed text-slate-300">
             Panduan seluruh halaman aktif, analisis umum, pengaturan akun, serta route tambahan yang masih berupa demo/legacy.
             Disusun dari kode dan tampilan aplikasi pada <strong className="text-white">7 Oktober 2026</strong>.
@@ -175,10 +175,10 @@ export function UserGuide() {
             <li>Login, periksa role/workspace, dan pilih topik dari header.</li>
             <li>Kelola keyword/platform/konteks melalui <a href="#topics-settings" className="text-blue-800">Topics Settings</a>. Tunggu data crawl tersedia.</li>
             <li>Baca Dashboard, Metrics, atau References untuk gambaran umum dan sumber konten.</li>
-            <li>Untuk indikasi pelanggaran, gunakan Radar, Dumas, EWS, dan Daftar Isu. Verifikasi sumber sebelum tindak lanjut.</li>
-            <li>Operator mengatur Polda user workspace Propam Polri melalui Pengaturan Akses; pengguna mengatur tujuan laporan melalui Pengaturan Report.</li>
+            <li>Untuk indikasi ancaman terorisme, gunakan Radar Ancaman Teror, Sentimen & Propaganda Publik, EWS Kontraterorisme, dan Isu & Bukti Digital. Verifikasi sumber sebelum tindak lanjut.</li>
+            <li>Operator mengatur Polda user workspace Densus 88 melalui Pengaturan Akses; pengguna mengatur tujuan laporan melalui Pengaturan Report.</li>
           </ol>
-          <p className="mb-0 mt-3 text-sm font-semibold text-blue-950">Data publik adalah sinyal awal, bukan bukti pelanggaran, daftar kasus resmi, atau putusan terhadap personel.</p>
+          <p className="mb-0 mt-3 text-sm font-semibold text-blue-950">Data publik adalah sinyal awal, bukan bukti hukum, daftar kasus resmi, atau putusan terhadap seseorang/kelompok.</p>
         </section>
 
         <section aria-labelledby="scope-title" className="mb-6 rounded-2xl border border-slate-200 bg-white p-5">
@@ -186,9 +186,9 @@ export function UserGuide() {
           <div className="grid gap-4 text-sm leading-relaxed sm:grid-cols-3">
             <p className="m-0"><strong>Workspace:</strong> ruang akses topik. Tetap global dan tidak perlu dibuat ulang untuk setiap Polda.</p>
             <p className="m-0"><strong>Topik:</strong> keyword dan konteks pengumpulan/analisis. Semua topik berarti seluruh topik dalam akses Anda, bukan seluruh database.</p>
-            <p className="m-0"><strong>Polda:</strong> penugasan akun untuk cakupan Propam. Nasional tidak melewati akses workspace/topik. Wilayah dikenali secara heuristik dari unit/teks.</p>
+            <p className="m-0"><strong>Polda:</strong> penugasan akun untuk cakupan Densus 88. Nasional tidak melewati akses workspace/topik. Wilayah dikenali secara heuristik dari teks.</p>
           </div>
-          <p className="mb-0 mt-3 text-sm text-slate-600">Judul sidebar mengikuti akun: nama Polda - EWS Paminal, atau Nasional - EWS Paminal. Pemilihan topik tidak mengubah hak akses Polda.</p>
+          <p className="mb-0 mt-3 text-sm text-slate-600">Judul sidebar mengikuti akun: nama Polda - EWS Kontraterorisme, atau Nasional - EWS Kontraterorisme. Pemilihan topik tidak mengubah hak akses Polda.</p>
         </section>
 
         <div className="grid gap-6 lg:grid-cols-[260px_minmax(0,1fr)] print:block">

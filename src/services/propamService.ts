@@ -18,7 +18,7 @@ import api from './api';
 
 // ----------------------------------------------------------------------
 
-const BASE = '/v1/propam';
+const BASE = '/v1/densus88';
 
 async function get<TData, TMeta = Record<string, unknown>>(
   path: string,

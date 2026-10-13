@@ -21,7 +21,7 @@ export function PropamPage({ title, subtitle, icon: Icon, children }: PageProps)
   return (
     <>
       <Helmet>
-        <title>{`${title} | Propam EWS`}</title>
+        <title>{`${title} | Densus 88 EWS`}</title>
       </Helmet>
       <div className="mx-auto w-full max-w-7xl space-y-5 px-4 py-6 [--spacing:0.25rem]">
         <header className="flex items-start gap-3">

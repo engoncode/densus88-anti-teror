@@ -11,6 +11,7 @@
     "build": "tsc && vite build",
     "build:guide": "tsc && vite build --config vite.guide.config.ts && node scripts/export-user-guide.mjs",
     "check:guide": "node scripts/check-user-guide.mjs",
+    "check:densus88": "node scripts/check-densus88.mjs",
     "clean": "rm -rf node_modules .next out dist build",
     "re:dev": "yarn clean && yarn install && yarn dev",
     "re:build": "yarn clean && yarn install && yarn build",

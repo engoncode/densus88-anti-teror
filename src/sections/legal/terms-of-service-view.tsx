@@ -18,13 +18,13 @@ export function TermsOfServiceView() {
 
       <Paper elevation={2} sx={{ p: 4 }}>
         <Typography variant="h3" sx={{ mb: 4 }}>
-          Persyaratan Layanan - Propam Polri
+          Persyaratan Layanan - Densus 88 Antiteror
         </Typography>
 
         <Typography variant="body1" sx={{ mb: 3 }}>
-          Selamat datang di Propam Polri. Platform ini adalah layanan analisis sentimen dan
-          peringatan dini yang membantu Divisi Propam Polri memahami opini publik melalui analisis
-          data dari berbagai sumber digital. Dengan menggunakan layanan kami, Anda menyetujui
+          Selamat datang di Densus 88 Antiteror. Platform ini adalah layanan analisis sentimen dan
+          peringatan dini kontraterorisme yang membantu Densus 88 Antiteror Polri memahami narasi
+          ekstremisme melalui analisis OSINT dari berbagai sumber digital. Dengan menggunakan layanan kami, Anda menyetujui
           ketentuan berikut:
         </Typography>
 
@@ -35,12 +35,12 @@ export function TermsOfServiceView() {
           <li>
             <Typography variant="body1" sx={{ mb: 1 }}>
               Pengguna wajib mematuhi semua hukum dan peraturan yang berlaku saat menggunakan
-              layanan Propam Polri.
+              layanan Densus 88 Antiteror.
             </Typography>
           </li>
           <li>
             <Typography variant="body1" sx={{ mb: 1 }}>
-              Propam Polri berhak memperbarui atau mengubah ketentuan layanan kapan saja tanpa
+              Densus 88 Antiteror berhak memperbarui atau mengubah ketentuan layanan kapan saja tanpa
               pemberitahuan sebelumnya.
             </Typography>
           </li>
@@ -64,7 +64,7 @@ export function TermsOfServiceView() {
           </li>
           <li>
             <Typography variant="body1" sx={{ mb: 1 }}>
-              Propam Polri tidak bertanggung jawab atas kehilangan atau penyalahgunaan akun akibat
+              Densus 88 Antiteror tidak bertanggung jawab atas kehilangan atau penyalahgunaan akun akibat
               kelalaian pengguna.
             </Typography>
           </li>
@@ -76,7 +76,7 @@ export function TermsOfServiceView() {
         <Box component="ul" sx={{ pl: 3, mb: 3 }}>
           <li>
             <Typography variant="body1" sx={{ mb: 1 }}>
-              Data yang dikumpulkan melalui layanan Propam Polri hanya boleh digunakan sesuai dengan
+              Data yang dikumpulkan melalui layanan Densus 88 Antiteror hanya boleh digunakan sesuai dengan
               kebijakan dan peraturan yang berlaku.
             </Typography>
           </li>
@@ -101,13 +101,13 @@ export function TermsOfServiceView() {
 
         {/* English Version */}
         <Typography variant="h3" sx={{ mb: 4, mt: 6 }}>
-          Terms of Service - Propam Polri
+          Terms of Service - Densus 88 Antiteror
         </Typography>
 
         <Typography variant="body1" sx={{ mb: 3 }}>
-          Welcome to Propam Polri. This platform is a sentiment analysis and early warning
-          service that helps the Propam Division of the Indonesian National Police understand
-          public opinion through data analysis from various digital sources. By using our
+          Welcome to Densus 88 Antiteror. This platform is a sentiment analysis and counter-terrorism early warning
+          service that helps the Indonesian National Police Densus 88 Anti-Terror Detachment understand
+          extremist narratives through OSINT analysis from various digital sources. By using our
           services, you agree to the following terms:
         </Typography>
 
@@ -117,13 +117,13 @@ export function TermsOfServiceView() {
         <Box component="ul" sx={{ pl: 3, mb: 3 }}>
           <li>
             <Typography variant="body1" sx={{ mb: 1 }}>
-              Users must comply with all applicable laws and regulations when using Propam Polri
+              Users must comply with all applicable laws and regulations when using Densus 88 Antiteror
               services.
             </Typography>
           </li>
           <li>
             <Typography variant="body1" sx={{ mb: 1 }}>
-              Propam Polri reserves the right to update or modify the terms of service at any time
+              Densus 88 Antiteror reserves the right to update or modify the terms of service at any time
               without prior notice.
             </Typography>
           </li>
@@ -147,7 +147,7 @@ export function TermsOfServiceView() {
           </li>
           <li>
             <Typography variant="body1" sx={{ mb: 1 }}>
-              Propam Polri is not responsible for loss or misuse of accounts due to user negligence.
+              Densus 88 Antiteror is not responsible for loss or misuse of accounts due to user negligence.
             </Typography>
           </li>
         </Box>
@@ -158,7 +158,7 @@ export function TermsOfServiceView() {
         <Box component="ul" sx={{ pl: 3, mb: 3 }}>
           <li>
             <Typography variant="body1" sx={{ mb: 1 }}>
-              Data collected through Propam Polri services may only be used in accordance with
+              Data collected through Densus 88 Antiteror services may only be used in accordance with
               applicable policies and regulations.
             </Typography>
           </li>

@@ -1,7 +1,7 @@
 import type { RouteObject } from 'react-router';
 
 import { lazy, Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Navigate, useLocation } from 'react-router-dom';
 import { varAlpha } from 'minimal-shared/utils';
 
 import Box from '@mui/material/Box';
@@ -54,7 +54,7 @@ export const AiInsightsPage = lazy(() => import('src/pages/ai-insights'));
 export const DetectionPage = lazy(() => import('src/pages/detection'));
 export const CreateUserPage = lazy(() => import('src/pages/create-user'));
 
-// Propam / EWS Paminal
+// Densus 88 pages reuse the existing analytics views.
 export const PropamRadarPage = lazy(() => import('src/pages/propam-radar'));
 export const PropamDumasPage = lazy(() => import('src/pages/propam-dumas'));
 export const PropamKategorisasiPage = lazy(() => import('src/pages/propam-kategorisasi'));
@@ -90,6 +90,17 @@ const renderFallback = () => (
     />
   </Box>
 );
+
+function LegacyPropamRedirect() {
+  const { pathname, search, hash, state } = useLocation();
+  return (
+    <Navigate
+      to={`${pathname.replace(/^\/propam\//, '/densus88/')}${search}${hash}`}
+      state={state}
+      replace
+    />
+  );
+}
 
 export const routesSection: RouteObject[] = [
   {
@@ -132,23 +143,33 @@ export const routesSection: RouteObject[] = [
       { path: 'ai-insights', element: <AiInsightsPage /> },
       { path: 'detection', element: <DetectionPage /> },
       { path: 'create-user', element: <CreateUserPage /> },
-      { path: 'propam/radar', element: <PropamRadarPage /> },
-      { path: 'propam/dumas', element: <PropamDumasPage /> },
-      { path: 'propam/kategorisasi', element: <PropamKategorisasiPage /> },
-      { path: 'propam/ews', element: <PropamEwsPage /> },
-      { path: 'propam/red-zone', element: <PropamRedZonePage /> },
-      { path: 'propam/ringkasan', element: <PropamRingkasanPage /> },
-      { path: 'propam/sna', element: <PropamSnaPage /> },
-      { path: 'propam/issues', element: <PropamIssuesPage /> },
-      { path: 'propam/report-settings', element: <PropamReportSettingsPage /> },
+      { path: 'densus88/radar', element: <PropamRadarPage /> },
+      { path: 'densus88/dumas', element: <PropamDumasPage /> },
+      { path: 'densus88/kategorisasi', element: <PropamKategorisasiPage /> },
+      { path: 'densus88/ews', element: <PropamEwsPage /> },
+      { path: 'densus88/red-zone', element: <PropamRedZonePage /> },
+      { path: 'densus88/ringkasan', element: <PropamRingkasanPage /> },
+      { path: 'densus88/sna', element: <PropamSnaPage /> },
+      { path: 'densus88/issues', element: <PropamIssuesPage /> },
+      { path: 'densus88/report-settings', element: <PropamReportSettingsPage /> },
       {
-        path: 'propam/access-settings',
+        path: 'densus88/access-settings',
         element: (
           <ProtectedRoute allowedRoles={['Operator']}>
             <PropamAccessSettingsPage />
           </ProtectedRoute>
         ),
       },
+      { path: 'propam/radar', element: <LegacyPropamRedirect /> },
+      { path: 'propam/dumas', element: <LegacyPropamRedirect /> },
+      { path: 'propam/kategorisasi', element: <LegacyPropamRedirect /> },
+      { path: 'propam/ews', element: <LegacyPropamRedirect /> },
+      { path: 'propam/red-zone', element: <LegacyPropamRedirect /> },
+      { path: 'propam/ringkasan', element: <LegacyPropamRedirect /> },
+      { path: 'propam/sna', element: <LegacyPropamRedirect /> },
+      { path: 'propam/issues', element: <LegacyPropamRedirect /> },
+      { path: 'propam/report-settings', element: <LegacyPropamRedirect /> },
+      { path: 'propam/access-settings', element: <LegacyPropamRedirect /> },
     ],
   },
   {

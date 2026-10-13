@@ -35,8 +35,8 @@ export function KategorisasiView() {
 
   return (
     <PropamPage
-      title="Kategorisasi Pelanggaran"
-      subtitle="Klasifikasi otomatis: Pelanggaran Etik, Disiplin, Netralitas, dan Tindak Pidana."
+      title="Kategorisasi Sel & Modus Operandi"
+      subtitle="Klasifikasi otomatis: Propaganda Daring, Rekrutmen Tertutup, Pendanaan Terorisme (Fa'i), dan Persiapan Amaliyah."
       icon={Tags}
     >
       <FilterBar
@@ -68,7 +68,7 @@ export function KategorisasiView() {
                       active ? 'border-fg bg-fg text-surface' : 'border-line bg-surface hover:border-fg-muted'
                     }`}
                   >
-                    <p className={`text-xs font-medium ${active ? 'text-fg-muted' : 'text-fg-muted'}`}>{c.label}</p>
+                    <p className={`text-xs font-medium ${active ? 'text-fg-muted' : 'text-fg-muted'}`}>{CATEGORY_LABEL[c.category]}</p>
                     <p className="text-2xl font-bold">{c.count}</p>
                     <p className={`text-xs ${active ? 'text-fg-muted' : 'text-fg-muted'}`}>
                       {c.percentage}% · {c.critical} kritis

@@ -79,6 +79,19 @@ export interface UpdateTopicData {
   context?: string;
 }
 
+export type ThreatMonitoringSource = 'media' | 'twitter' | 'facebook' | 'instagram' | 'tiktok';
+
+export interface CreateThreatMonitoringTopicData {
+  name: string;
+  keyword: string;
+  workspace_id: number;
+  hashtag?: string;
+  instansi?: string;
+  monitoring: boolean;
+  media_sources: ThreatMonitoringSource[];
+  context?: string;
+}
+
 export const topicsApi = {
   // Get topics (filtered by user's workspace access)
   getAll: () => apiClient.get<Topic[]>('/topics'),
@@ -89,6 +102,9 @@ export const topicsApi = {
   getById: (id: number) => apiClient.get<Topic>(`/topics/${id}`),
 
   create: (data: CreateTopicData) => apiClient.post<Topic>('/topics', data),
+
+  createThreatMonitoring: (data: CreateThreatMonitoringTopicData) =>
+    apiClient.post<{ message: string; topic: Topic }>('/v1/densus88/threat-monitoring/topics', data),
 
   update: (id: number, data: UpdateTopicData) => apiClient.put<Topic>(`/topics/${id}`, data),
 

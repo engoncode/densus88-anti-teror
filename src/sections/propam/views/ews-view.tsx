@@ -31,8 +31,8 @@ export function EwsView() {
 
   return (
     <PropamPage
-      title="EWS Paminal"
-      subtitle="Peringatan dini eskalasi kemarahan publik terhadap Satwil/Satker berdasarkan lonjakan sentimen negatif."
+      title="EWS Kontraterorisme"
+      subtitle="Peringatan dini potensi eskalasi ancaman per wilayah/kelompok berdasarkan lonjakan narasi ekstremisme."
       icon={Siren}
     >
       <FilterBar
@@ -49,7 +49,7 @@ export function EwsView() {
         {data && (
           <>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              <StatCard label="Satwil/Satker dipantau" value={data.summary.units_monitored} icon={<MapPin strokeWidth={1.5} className="size-5" />} />
+              <StatCard label="Wilayah/kelompok dipantau" value={data.summary.units_monitored} icon={<MapPin strokeWidth={1.5} className="size-5" />} />
               <StatCard label="Peringatan aktif" value={data.summary.alerts} icon={<Siren strokeWidth={1.5} className="size-5" />} tone="danger" />
               <StatCard label="Level AWAS" value={data.summary.by_level.awas ?? 0} icon={<Gauge strokeWidth={1.5} className="size-5" />} tone="danger" />
               <StatCard label="Level SIAGA" value={data.summary.by_level.siaga ?? 0} icon={<TrendingUp strokeWidth={1.5} className="size-5" />} tone="warning" />
@@ -57,8 +57,8 @@ export function EwsView() {
 
             {data.units.length === 0 ? (
               <EmptyState
-                title="Belum ada Satwil/Satker teridentifikasi"
-                hint="Unit dikenali dari nama dalam teks postingan negatif (mis. Polres Bogor)."
+                title="Belum ada wilayah/kelompok teridentifikasi"
+                hint="Wilayah/kelompok dikenali dari nama yang disebut dalam teks postingan terindikasi."
               />
             ) : (
               <div className="space-y-4">

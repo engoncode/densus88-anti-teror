@@ -28,10 +28,11 @@ export const ZONE_STYLE: Record<ZoneLevel, { label: string; badge: string }> = {
 };
 
 export const CATEGORY_LABEL: Record<ViolationCategory, string> = {
-  tindak_pidana: 'Tindak Pidana',
-  pelanggaran_etik: 'Pelanggaran Etik',
-  pelanggaran_disiplin: 'Pelanggaran Disiplin',
-  netralitas: 'Netralitas',
+  // Kunci API tetap (kompatibilitas backend); label disesuaikan dengan kategori sel & modus operandi Densus 88.
+  tindak_pidana: 'Persiapan Amaliyah',
+  pelanggaran_etik: 'Propaganda Daring',
+  pelanggaran_disiplin: 'Rekrutmen Tertutup',
+  netralitas: "Pendanaan Terorisme (Fa'i)",
 };
 
 export const PLATFORM_OPTIONS = [

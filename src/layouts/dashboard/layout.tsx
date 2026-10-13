@@ -84,7 +84,7 @@ export function DashboardLayout({
 
   // Filter nav data based on user role
   const filteredNavData = getFilteredNavData(user?.role?.name).map((group) =>
-    group.items.some((item) => item.path === '/propam/radar')
+    group.items.some((item) => item.path === '/densus88/radar')
       ? { ...group, subheader: propamScopeLabel }
       : group
   );

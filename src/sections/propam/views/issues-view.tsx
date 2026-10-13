@@ -115,7 +115,7 @@ export function IssuesView() {
   }, [detailKey]);
 
   return (
-    <PropamPage title="Daftar Isu Propam" subtitle="Kelompok indikasi dari posting publik, timeline, dan sumber pendukung." icon={Files}>
+    <PropamPage title="Isu & Bukti Digital" subtitle="Kelompok indikasi dari posting publik, timeline, dan sumber pendukung OSINT." icon={Files}>
       <FilterBar
         filters={filters}
         onChange={(next) => { setFilters(next); setPage(1); setSelectedId(null); }}
@@ -128,7 +128,7 @@ export function IssuesView() {
       />
       <aside className="rounded-xl border border-line bg-muted p-4 text-xs leading-relaxed text-fg-muted">
         <strong className="text-fg">Indikasi — belum diverifikasi.</strong> Kelompok otomatis berbasis kemiripan teks,
-        bukan jumlah kasus resmi atau bukti pelanggaran. Unit yang disebut belum tentu pihak yang dituduh.
+        bukan jumlah kasus resmi atau bukti hukum. Wilayah/kelompok yang disebut belum tentu terafiliasi jaringan terorisme.
         Waktu paling awal hanya berlaku pada data/filter terpantau, bukan bukti pencetus isu.
       </aside>
       {meta?.truncated && (
@@ -151,7 +151,7 @@ export function IssuesView() {
                     <span className="text-xs text-fg-muted">Belum diverifikasi</span>
                   </div>
                   <h2 className="text-base font-semibold break-words text-fg">{issue.title}</h2>
-                  <p className="text-xs text-fg-muted">Unit disebut: {issue.unit_mentioned ?? 'Belum dikenali'} · Topik ID {issue.topic_id}</p>
+                  <p className="text-xs text-fg-muted">Wilayah/kelompok disebut: {issue.unit_mentioned ?? 'Belum dikenali'} · Topik ID {issue.topic_id}</p>
                   <p className="text-xs text-fg-muted">
                     {issue.post_count} posting · {issue.unique_sources} identitas sumber · {Object.keys(issue.platforms).join(', ')}
                   </p>

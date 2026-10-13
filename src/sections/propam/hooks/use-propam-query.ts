@@ -39,7 +39,7 @@ export function usePropamQuery<TData, TMeta = Record<string, unknown>>(
       const message =
         axios.isAxiosError(err) && err.response?.data?.message
           ? String(err.response.data.message)
-          : 'Gagal memuat data Propam.';
+          : 'Gagal memuat data Densus 88.';
       setError(message);
     } finally {
       if (!controller.signal.aborted) setLoading(false);

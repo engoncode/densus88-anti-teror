@@ -15,7 +15,7 @@ export interface ReportSettings extends ReportSettingsInput {
   schedule_time?: string;
 }
 
-const PATH = '/v1/propam/report-settings';
+const PATH = '/v1/densus88/report-settings';
 
 export interface ReportPreview {
   report: {
@@ -40,7 +40,7 @@ export interface ReportPreview {
 export const reportPreviewService = {
   async get(signal?: AbortSignal) {
     const { data } = await api.get<{ data: ReportPreview; meta?: Record<string, unknown>; generated_at: string }>(
-      '/v1/propam/report/preview',
+      '/v1/densus88/report/preview',
       { signal }
     );
     return { ...data, meta: data.meta ?? {} };

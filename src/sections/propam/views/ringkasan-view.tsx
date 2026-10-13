@@ -27,8 +27,8 @@ export function RingkasanView() {
 
   return (
     <PropamPage
-      title="Ringkasan & Mitigasi Propam"
-      subtitle="Rangkuman situasi disertai rekomendasi taktis untuk tindak lanjut pimpinan."
+      title="Ringkasan & Mitigasi"
+      subtitle="Rangkuman situasi disertai rekomendasi preventif dan kontra-narasi untuk tindak lanjut pimpinan."
       icon={FileText}
     >
       <FilterBar
@@ -47,7 +47,7 @@ export function RingkasanView() {
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               <StatCard label="Postingan negatif" value={data.overview.negative_posts} icon={<TriangleAlert strokeWidth={1.5} className="size-5" />} />
               <StatCard
-                label="Indikasi pelanggaran"
+                label="Indikasi ancaman"
                 value={data.overview.violation_posts}
                 hint={`${data.overview.violation_ratio_pct}% dari negatif`}
                 icon={<FileText strokeWidth={1.5} className="size-5" />}
@@ -102,7 +102,7 @@ export function RingkasanView() {
 
             <div className="grid gap-4 lg:grid-cols-3">
               <section className="rounded-xl border border-line bg-surface p-4">
-                <h2 className="mb-3 text-sm font-semibold text-fg">Kategori pelanggaran</h2>
+                <h2 className="mb-3 text-sm font-semibold text-fg">Kategori sel & modus operandi</h2>
                 {Object.keys(data.overview.by_category).length === 0 ? (
                   <p className="text-xs text-fg-muted">Belum ada data.</p>
                 ) : (

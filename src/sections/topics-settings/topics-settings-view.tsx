@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { isAxiosError } from 'axios';
 import {
   Box,
   Card,
@@ -37,6 +38,15 @@ import {
 import { Icon } from '@iconify/react';
 import { Helmet } from 'react-helmet-async';
 import apiClient from 'src/services/apiService';
+import { topicsApi, type ThreatMonitoringSource } from 'src/services/topicsService';
+
+const MEDIA_OPTIONS: { label: string; source: ThreatMonitoringSource }[] = [
+  { label: 'Media', source: 'media' },
+  { label: 'Twitter', source: 'twitter' },
+  { label: 'Facebook', source: 'facebook' },
+  { label: 'Instagram', source: 'instagram' },
+  { label: 'TikTok', source: 'tiktok' },
+];
 
 interface Topic {
   id: number;
@@ -46,6 +56,7 @@ interface Topic {
   instansi?: string;
   monitoring?: string;
   pivot_id?: number;
+  media?: string;
   twitter?: string;
   facebook?: string;
   instagram?: string;
@@ -185,13 +196,13 @@ export function TopicsSettingsView() {
     keywords: [],
     hashtag: '',
     instansi: '',
-    media: ['Media', 'Twitter', 'Facebook', 'Instagram', 'Threads', 'TikTok', 'YouTube'],
+    media: MEDIA_OPTIONS.map((option) => option.label),
     monitoring: 'N',
     context: '',
   });
 
   const [editTopic, setEditTopic] = useState<
-    (Topic & { keywords: string[]; media: string[]; context: string }) | null
+    (Omit<Topic, 'media'> & { keywords: string[]; media: string[]; context: string }) | null
   >(null);
   const [generatingContext, setGeneratingContext] = useState(false);
   const [updateLoading, setUpdateLoading] = useState(false);
@@ -199,16 +210,11 @@ export function TopicsSettingsView() {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
 
-  const mediaOptions = [
-    'Media',
-    'Twitter',
-    'Facebook',
-    'Instagram',
-    'TikTok',
-  ];
+  const mediaOptions = MEDIA_OPTIONS.map((option) => option.label);
 
   // Convert media name array to backend Y/N fields
   const mediaArrayToFields = (media: string[]) => ({
+    media: media.includes('Media') ? 'Y' : 'N',
     twitter: media.includes('Twitter') ? 'Y' : 'N',
     facebook: media.includes('Facebook') ? 'Y' : 'N',
     instagram: media.includes('Instagram') ? 'Y' : 'N',
@@ -219,6 +225,7 @@ export function TopicsSettingsView() {
   // Convert backend Y/N fields to media name array
   const fieldsToMediaArray = (topic: Topic): string[] => {
     const result: string[] = [];
+    if (topic.media === 'Y') result.push('Media');
     if (topic.twitter === 'Y') result.push('Twitter');
     if (topic.facebook === 'Y') result.push('Facebook');
     if (topic.instagram === 'Y') result.push('Instagram');
@@ -287,27 +294,29 @@ export function TopicsSettingsView() {
       showNotification('At least one keyword is required.', 'error');
       return;
     }
-    if (!newTopic.hashtag.trim()) {
-      showNotification('Hashtag is required.', 'error');
+    if (newTopic.media.length === 0) {
+      showNotification('Pilih minimal satu sumber media.', 'error');
       return;
     }
-    if (!newTopic.instansi.trim()) {
-      showNotification('Instansi is required.', 'error');
+    const workspaceId = Number(localStorage.getItem('workspace_id'));
+    if (!Number.isSafeInteger(workspaceId) || workspaceId <= 0) {
+      showNotification('Workspace belum tersedia. Masuk ulang atau hubungi pengelola.', 'error');
       return;
     }
 
     setCreateLoading(true);
     try {
-      const workspaceId = localStorage.getItem('workspace_id');
-      await apiClient.post('/topics', {
+      await topicsApi.createThreatMonitoring({
         name: newTopic.name,
         keyword: newTopic.keywords.join(' or '),
         hashtag: newTopic.hashtag,
         instansi: newTopic.instansi,
         workspace_id: workspaceId,
-        monitoring: newTopic.monitoring,
+        monitoring: newTopic.monitoring === 'Y',
         context: newTopic.context,
-        ...mediaArrayToFields(newTopic.media),
+        media_sources: MEDIA_OPTIONS
+          .filter((option) => newTopic.media.includes(option.label))
+          .map((option) => option.source),
       });
 
       showNotification('Topic successfully created!');
@@ -323,8 +332,12 @@ export function TopicsSettingsView() {
       setShowCreateModal(false);
       fetchTopics();
       window.dispatchEvent(new Event('topicsUpdated'));
-    } catch (error: any) {
-      showNotification(error.response?.data?.message || 'Failed to create topic.', 'error');
+    } catch (error) {
+      const response = isAxiosError<{ message?: string; errors?: Record<string, string[]> }>(error)
+        ? error.response?.data
+        : undefined;
+      const validationMessage = response?.errors && Object.values(response.errors).flat().join(' ');
+      showNotification(validationMessage || response?.message || 'Gagal membuat topik monitoring.', 'error');
     } finally {
       setCreateLoading(false);
     }
@@ -341,22 +354,21 @@ export function TopicsSettingsView() {
       showNotification('At least one keyword is required.', 'error');
       return;
     }
-    if (!editTopic.hashtag?.trim()) {
-      showNotification('Hashtag is required.', 'error');
+    const originalTopic = allTopics.find((topic) => topic.id === editTopic.id);
+    if (
+      (originalTopic?.hashtag && !editTopic.hashtag?.trim()) ||
+      (originalTopic?.instansi && !editTopic.instansi?.trim())
+    ) {
+      showNotification('API edit lama belum mendukung pengosongan hashtag atau instansi yang sudah terisi.', 'error');
       return;
     }
-    if (!editTopic.instansi?.trim()) {
-      showNotification('Instansi is required.', 'error');
-      return;
-    }
-
     setUpdateLoading(true);
     try {
       const response = await apiClient.put(`/topics/${editTopic.id}`, {
         name: editTopic.name,
         keyword: editTopic.keywords.join(' or '),
-        hashtag: editTopic.hashtag || '',
-        instansi: editTopic.instansi,
+        hashtag: editTopic.hashtag?.trim() || undefined,
+        instansi: editTopic.instansi?.trim() || undefined,
         monitoring: editTopic.monitoring ?? 'N',
         context: editTopic.context,
         ...mediaArrayToFields(editTopic.media),
@@ -847,7 +859,6 @@ export function TopicsSettingsView() {
                 </Typography>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
                   {mediaOptions
-                    .filter((m) => m !== 'Media' && m !== 'Threads')
                     .map((media) => (
                       <FormControlLabel
                         key={media}

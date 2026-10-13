@@ -22,8 +22,8 @@ export function SnaView() {
 
   return (
     <PropamPage
-      title="SNA & Flow Analysis"
-      subtitle="Pelacakan Ground Zero dan Key Opinion Leader (KOL) yang memperkuat viralitas kasus oknum."
+      title="SNA & Network Mapping"
+      subtitle="Pelacakan Ground Zero, simpul komunikasi, dan Key Opinion Leader (KOL) yang memperkuat penyebaran narasi ekstremisme."
       icon={Network}
     >
       <FilterBar
@@ -41,7 +41,7 @@ export function SnaView() {
           (data.clusters.length === 0 ? (
             <EmptyState
               title="Belum ada kluster penyebaran"
-              hint="Kluster dibentuk dari konten pelanggaran yang menyebut Satwil/Satker tertentu."
+              hint="Kluster dibentuk dari konten terindikasi yang menyebut wilayah/kelompok tertentu."
             />
           ) : (
             <div className="space-y-5">

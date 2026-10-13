@@ -33,8 +33,8 @@ export function RadarView() {
 
   return (
     <PropamPage
-      title="Radar Oknum Viral"
-      subtitle="Deteksi real-time konten negatif yang berpotensi memviralkan tindakan indisipliner personel."
+      title="Radar Ancaman Teror"
+      subtitle="Deteksi eskalasi narasi ekstremisme dan propaganda di ruang digital."
       icon={Radar}
     >
       <FilterBar
@@ -72,7 +72,7 @@ export function RadarView() {
             {data.items.data.length === 0 ? (
               <EmptyState
                 title="Tidak ada konten terdeteksi"
-                hint="Belum ada postingan negatif dengan kata kunci pelanggaran pada periode ini."
+                hint="Belum ada postingan negatif dengan kata kunci indikasi ancaman pada periode ini."
               />
             ) : (
               <>

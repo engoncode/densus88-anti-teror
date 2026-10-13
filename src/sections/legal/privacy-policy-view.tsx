@@ -18,11 +18,11 @@ export function PrivacyPolicyView() {
 
       <Paper elevation={2} sx={{ p: 4 }}>
         <Typography variant="h3" sx={{ mb: 4 }}>
-          Kebijakan Privasi - Propam Polri
+          Kebijakan Privasi - Densus 88 Antiteror
         </Typography>
 
         <Typography variant="body1" sx={{ mb: 3 }}>
-          Propam Polri berkomitmen untuk melindungi privasi pengguna kami. Kebijakan privasi ini
+          Densus 88 Antiteror berkomitmen untuk melindungi privasi pengguna kami. Kebijakan privasi ini
           menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi
           Anda.
         </Typography>

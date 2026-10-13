@@ -1,11 +1,11 @@
 import type { FormEvent } from 'react';
-import type { AccessUser, AccessUserPage, PoldaOption } from 'src/services/propamAccessService';
+import type { AccessUser, AccessUserPage, PoldaOption } from 'src/services/densus88AccessService';
 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Globe, Save, Search, ShieldCheck, LoaderCircle } from 'lucide-react';
 
-import { propamAccessService } from 'src/services/propamAccessService';
+import { densus88AccessService } from 'src/services/densus88AccessService';
 import { useAuth } from 'src/contexts/AuthContext';
 
 import { PropamPage } from '../components/propam-page';
@@ -18,7 +18,7 @@ const BUTTON = 'inline-flex items-center justify-center gap-2 rounded-lg border 
 function errorMessage(error: unknown): string {
   return axios.isAxiosError<{ message?: string }>(error) && error.response?.data.message
     ? error.response.data.message
-    : 'Gagal menghubungi API pengaturan akses Propam.';
+    : 'Gagal menghubungi API pengaturan akses Densus 88.';
 }
 
 type AccessRowProps = {
@@ -52,7 +52,7 @@ function AccessRow({ user, options, busy, saving, onSave }: AccessRowProps) {
       <td className="p-4 align-top">
         <form onSubmit={submit} className="space-y-3">
           <div className="flex flex-wrap items-center gap-2">
-            <label className="sr-only" htmlFor={`polda-${user.id}`}>Cakupan Propam untuk {user.name}</label>
+            <label className="sr-only" htmlFor={`polda-${user.id}`}>Cakupan Densus 88 untuk {user.name}</label>
             <select id={`polda-${user.id}`} className={`${CONTROL} min-w-56 flex-1`}
               disabled={busy} value={draft}
               onChange={(event) => { setDraft(event.target.value); setConfirmed(false); }}>
@@ -97,7 +97,7 @@ export function AccessSettingsView() {
     const controller = new AbortController();
     setLoading(true);
     setLoadError(null);
-    propamAccessService.users(search, page, controller.signal)
+    densus88AccessService.users(search, page, controller.signal)
       .then((result) => {
         if (!controller.signal.aborted) {
           setUsers(result.data);
@@ -116,7 +116,7 @@ export function AccessSettingsView() {
     setSaveError(null);
     setSuccess(null);
     try {
-      const result = await propamAccessService.save(user.id, polda);
+      const result = await densus88AccessService.save(user.id, polda);
       setUsers((current) => current ? {
         ...current,
         data: current.data.map((item) => item.id === user.id ? { ...item, polda: result.data.polda } : item),
@@ -135,12 +135,12 @@ export function AccessSettingsView() {
   const busy = loading || savingId !== null;
 
   return (
-    <PropamPage title="Pengaturan Akses" subtitle="Tetapkan cakupan Polda per user, khusus modul Propam." icon={ShieldCheck}>
+    <PropamPage title="Pengaturan Akses Wilayah" subtitle="Tetapkan cakupan Polda per user untuk modul Densus 88." icon={ShieldCheck}>
       <aside className="space-y-2 rounded-xl border border-line bg-muted p-4 text-sm text-fg-muted">
         <p className="flex items-center gap-2 font-semibold text-fg"><Globe className="size-4" aria-hidden="true" /> Workspace tetap global</p>
         <p>Penugasan ini tidak mengubah role, workspace, atau akses analisis umum. Nasional berarti semua Polda dalam akses topik yang dimiliki user, bukan akses ke seluruh workspace.</p>
-        <p>Hanya Operator yang dapat mengelola halaman ini. Daftar dan perubahan dibatasi pada user di workspace Propam Polri; cakupannya dapat diatur menjadi satu Polda atau Nasional.</p>
-        <p>Penugasan satu Polda membatasi Radar, Dumas, EWS, isu, ringkasan, serta preview dan laporan harian. Data tanpa atribusi wilayah tidak ditampilkan untuk akun tersebut.</p>
+        <p>Hanya Operator yang dapat mengelola halaman ini. Daftar dan perubahan dibatasi pada pengguna workspace bernama &quot;Densus 88&quot;; cakupannya dapat diatur menjadi satu Polda atau Nasional.</p>
+        <p>Penugasan satu Polda memakai cakupan wilayah yang dibaca API analitik dan laporan saat ini. Data tanpa atribusi wilayah tidak ditampilkan untuk akun tersebut. Endpoint analitik masih memakai backend lama; klasifikasi khusus ancaman teror belum tersedia.</p>
       </aside>
       <form className="flex flex-wrap gap-2" onSubmit={(event) => {
         event.preventDefault();
@@ -161,7 +161,7 @@ export function AccessSettingsView() {
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[640px] text-left text-sm">
                   <caption className="sr-only">Cakupan akses Polda per user</caption>
-                  <thead className="bg-muted text-fg-muted"><tr><th scope="col" className="p-4">User</th><th scope="col" className="p-4">Cakupan Propam</th></tr></thead>
+                  <thead className="bg-muted text-fg-muted"><tr><th scope="col" className="p-4">Pengguna</th><th scope="col" className="p-4">Cakupan Densus 88</th></tr></thead>
                   <tbody>{users.data.map((user) => (
                     <AccessRow key={`${user.id}:${user.polda ?? 'national'}`} user={user} options={options}
                       busy={busy} saving={savingId === user.id} onSave={save} />
