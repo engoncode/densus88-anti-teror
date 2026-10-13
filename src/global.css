@@ -1,0 +1,77 @@
+/** **************************************
+* Fonts: app
+*************************************** */
+@import '@fontsource-variable/dm-sans';
+
+@import '@fontsource/barlow/400.css';
+@import '@fontsource/barlow/500.css';
+@import '@fontsource/barlow/600.css';
+@import '@fontsource/barlow/700.css';
+@import '@fontsource/barlow/800.css';
+
+/** **************************************
+* Tailwind (tanpa preflight agar tidak bentrok dengan MUI)
+*************************************** */
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+/* Token Tailwind mengikuti palette MUI (otomatis light/dark via data-color-scheme). */
+@theme inline {
+  --color-surface: var(--palette-background-paper);
+  --color-canvas: var(--palette-background-default);
+  --color-muted: var(--palette-background-neutral);
+  --color-fg: var(--palette-text-primary);
+  --color-fg-muted: var(--palette-text-secondary);
+  --color-line: var(--palette-divider);
+  --color-hover: var(--palette-action-hover);
+  --color-brand: var(--palette-primary-main);
+  --color-danger: var(--palette-error-main);
+  --color-warn: var(--palette-warning-main);
+}
+
+/** **************************************
+* Plugins
+*************************************** */
+/* scrollbar */
+@import './components/scrollbar/styles.css';
+
+/* chart */
+@import './components/chart/styles.css';
+
+/** **************************************
+* Baseline
+*************************************** */
+html {
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+body,
+#root,
+#root__layout {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 100%;
+  flex-direction: column;
+}
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: none;
+}
+input[type='number']::-webkit-outer-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+input[type='number']::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}

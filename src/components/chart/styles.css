@@ -1,0 +1,79 @@
+.apexcharts-canvas {
+  /**
+  * Pie chart datalabels - white color only for pie charts
+  */
+  .apexcharts-pie-series .apexcharts-datalabel,
+  .apexcharts-pie-series .apexcharts-datalabel-label,
+  .apexcharts-pie-series .apexcharts-datalabel-value {
+    fill: #ffffff !important;
+  }
+  /**
+  * Tooltip
+  */
+  .apexcharts-tooltip {
+    min-width: 80px;
+    border-radius: 10px;
+    backdrop-filter: blur(6px);
+    color: var(--palette-text-primary) !important;
+    box-shadow: var(--customShadows-dropdown);
+    background-color: rgba(var(--palette-background-defaultChannel) / 0.9) !important;
+  }
+  .apexcharts-xaxistooltip {
+    border-radius: 10px;
+    border-color: transparent;
+    backdrop-filter: blur(6px);
+    color: var(--palette-text-primary);
+    box-shadow: var(--customShadows-dropdown);
+    background-color: rgba(var(--palette-background-defaultChannel) / 0.9);
+    &::before {
+      border-bottom-color: rgba(var(--palette-grey-500Channel) / 0.16);
+    }
+    &::after {
+      border-bottom-color: rgba(var(--palette-background-defaultChannel) / 0.9);
+    }
+  }
+  .apexcharts-tooltip-title {
+    font-weight: 700;
+    text-align: center;
+    color: var(--palette-text-secondary) !important;
+    background-color: var(--palette-background-neutral) !important;
+  }
+  /**
+  * Tooltip: group
+  */
+  .apexcharts-tooltip-series-group {
+    padding: 4px 12px;
+  }
+  .apexcharts-tooltip-marker {
+    margin-right: 8px;
+  }
+  /**
+  * Legend
+  */
+  .apexcharts-legend {
+    padding: 0;
+  }
+  .apexcharts-legend-marker {
+    margin-right: 6px;
+  }
+  .apexcharts-legend-text {
+    margin-left: 0;
+    padding-left: 0;
+    line-height: 18px;
+    color: var(--palette-text-primary) !important;
+  }
+  /**
+  * Axis labels & text — follow theme color
+  */
+  .apexcharts-xaxis-label tspan,
+  .apexcharts-yaxis-label tspan {
+    fill: var(--palette-text-primary) !important;
+  }
+  .apexcharts-xaxis-title text,
+  .apexcharts-yaxis-title text {
+    fill: var(--palette-text-primary) !important;
+  }
+  .apexcharts-radialbar-label {
+    fill: var(--palette-text-primary) !important;
+  }
+}
