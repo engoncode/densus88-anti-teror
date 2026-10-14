@@ -4,7 +4,7 @@ import path from 'node:path';
 
 const root = path.resolve(import.meta.dirname, '..');
 const build = path.join(root, 'docs/.guide-build');
-let html = fs.readFileSync(path.join(build, 'panduan-offline.html'), 'utf8');
+let html = fs.readFileSync(path.join(build, 'guide-entry.html'), 'utf8');
 const files = fs.readdirSync(path.join(build, 'assets'));
 const images = new Map(files.filter((file) => file.endsWith('.png')).map((file) => [
   file,
@@ -43,8 +43,7 @@ assert.ok(!html.includes('import.meta.url'), 'Guide must not depend on the build
 assert.equal((html.match(/data:image\/png;base64,/g) ?? []).length, images.size, 'All screenshots must be embedded');
 const output = path.join(root, 'docs/panduan-penggunaan.html');
 fs.writeFileSync(output, html);
-if (fs.existsSync(path.join(root, 'dist'))) {
-  fs.copyFileSync(output, path.join(root, 'dist/panduan-offline.html'));
-}
+// public/ ikut disalin ke dist saat build dan disajikan dev server, sehingga tombol unduh selalu mendapat file mandiri.
+fs.copyFileSync(output, path.join(root, 'public/panduan-offline.html'));
 fs.rmSync(build, { recursive: true });
 console.log(`HTML offline: ${output} (${(Buffer.byteLength(html) / 1024 / 1024).toFixed(1)} MB)`);

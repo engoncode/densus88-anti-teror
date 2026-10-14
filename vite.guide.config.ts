@@ -11,7 +11,7 @@ export default defineConfig({
     outDir: 'docs/.guide-build',
     emptyOutDir: true,
     rollupOptions: {
-      input: path.resolve('panduan-offline.html'),
+      input: path.resolve('guide-entry.html'),
       output: { inlineDynamicImports: true },
     },
   },

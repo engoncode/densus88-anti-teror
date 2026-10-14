@@ -216,9 +216,10 @@ npm run build
 npm run build:guide
 ```
 
-Urutannya penting: build aplikasi terlebih dahulu, kemudian build panduan.
-Build aplikasi membersihkan `dist`; build panduan menambahkan `dist/panduan-offline.html`
-untuk tombol unduh. File mandiri `docs/panduan-penggunaan.html` menyertakan
+Build panduan menulis `public/panduan-offline.html` (disajikan dev server dan
+disalin ke `dist` oleh build aplikasi) untuk tombol unduh, sehingga file tidak hilang
+di deploy. Jalankan `npm run build:guide` setiap isi panduan atau screenshot berubah,
+lalu commit hasilnya. File mandiri `docs/panduan-penggunaan.html` menyertakan
 JavaScript, CSS, dan gambar sehingga dapat dibuka offline tanpa server/CDN.
 Panduan tidak mengambil data API atau menyertakan credential.
 
