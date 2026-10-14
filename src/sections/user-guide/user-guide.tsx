@@ -157,7 +157,7 @@ export function UserGuide() {
           <h1 className="m-0 text-3xl font-bold leading-tight sm:text-4xl">Cara menggunakan web Densus 88 Antiteror</h1>
           <p className="m-0 max-w-3xl text-base leading-relaxed text-slate-300">
             Panduan seluruh halaman aktif, analisis umum, pengaturan akun, serta route tambahan yang masih berupa demo/legacy.
-            Disusun dari kode dan tampilan aplikasi pada <strong className="text-white">7 Oktober 2026</strong>.
+            Disusun dari kode dan tampilan aplikasi pada <strong className="text-white">14 Oktober 2026</strong>.
           </p>
           <div className="flex flex-wrap items-center gap-3 text-sm text-slate-300">
             <span>{guidePages.length} halaman</span><span>Screenshot asli, identitas akun disamarkan</span>

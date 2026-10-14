@@ -140,7 +140,7 @@ export function AccessSettingsView() {
         <p className="flex items-center gap-2 font-semibold text-fg"><Globe className="size-4" aria-hidden="true" /> Workspace tetap global</p>
         <p>Penugasan ini tidak mengubah role, workspace, atau akses analisis umum. Nasional berarti semua Polda dalam akses topik yang dimiliki user, bukan akses ke seluruh workspace.</p>
         <p>Hanya Operator yang dapat mengelola halaman ini. Daftar dan perubahan dibatasi pada pengguna workspace bernama &quot;Densus 88&quot;; cakupannya dapat diatur menjadi satu Polda atau Nasional.</p>
-        <p>Penugasan satu Polda memakai cakupan wilayah yang dibaca API analitik dan laporan saat ini. Data tanpa atribusi wilayah tidak ditampilkan untuk akun tersebut. Endpoint analitik masih memakai backend lama; klasifikasi khusus ancaman teror belum tersedia.</p>
+        <p>Penugasan satu Polda memakai cakupan wilayah yang dibaca API analitik dan laporan saat ini. Data tanpa atribusi wilayah tidak ditampilkan untuk akun tersebut.</p>
       </aside>
       <form className="flex flex-wrap gap-2" onSubmit={(event) => {
         event.preventDefault();
