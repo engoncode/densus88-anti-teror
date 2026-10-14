@@ -107,6 +107,7 @@ export function TopicsPopover({ data = [], loading = false, sx, ...other }: Topi
       sx={{
         width: 32,
         height: 32,
+        flexShrink: 0,
         borderRadius: '50%',
         display: 'flex',
         alignItems: 'center',
